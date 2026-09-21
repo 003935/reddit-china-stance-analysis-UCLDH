@@ -1,0 +1,88 @@
+schema_version = "1.0.0"
+kind = "modernbert-post-acquisition-calibration-policy-v1"
+namespace = "student-modernbert-probability-random-candidate-v1"
+purpose = "fresh-probability-calibration-for-retained-random-arm-three-seed-ensemble"
+evidence_boundary = "model-assisted-calibration-development-not-human-validation"
+
+[selected_parent]
+closeout_id = "9e4f803ba828db1207f8675d9e167fd99c28f83fdaab2222272dc1ee3e6e641d"
+verdict = "retain_probability_random"
+experiment_run_id = "4fb74290fe82a65291b0689b74de137fd1c5c905c0f8d9a5e097926df43568b0"
+arm = "random"
+components = ["relevance", "target_stance_b4"]
+optimiser_seeds = [47, 61, 89]
+checkpoint_count = 6
+
+[eligible_frame]
+prepared_run_id = "20aa5baeb55ac09ae57a1e681ebe6886aac247ece48c7aaa7ad05b2c65861d9e"
+row_count = 910141
+acquisition_policy_sha256 = "fecd53f55e6c2b4e01bccb7d7beb72cc6acef200b7b5ca3a4afd1acba76b1221"
+requires_corrected_packet_bounds = true
+requires_base_10k_excluded = true
+requires_development_excluded = true
+requires_consumed_acquisition_evaluation_excluded = true
+requires_legacy_exposures_excluded = true
+
+[sampling]
+sample_rows = 600
+seed = "modernbert-post-acquisition-calibration-v1-probability-srswor"
+strata = ["year", "subreddit", "content_type"]
+minimum_per_observed_stratum = 1
+residual_allocation = "proportional-largest-remainder"
+within_stratum_draw = "deterministic-sha256-srswor"
+selection_component = "calibration_probability"
+probability_scope = "conditional-within-frozen-metadata-stratum"
+exclude_acquisition_arms = ["probability_random", "active"]
+exclude_keys = ["opaque_id", "thread_id", "near_duplicate_cluster_id"]
+
+[ensemble]
+aggregation = "unweighted-mean-logits"
+seed_selection = false
+stance_checkpoint_classes = ["negative", "mixed", "no_directed_stance", "positive"]
+stance_estimand_classes = ["negative", "no_directed_stance", "positive"]
+mixed_checkpoint_compatible = true
+mixed_in_estimand = false
+
+[calibration]
+temperature_grid = [0.5, 0.67, 0.8, 1.0, 1.25, 1.5, 2.0]
+threshold_grid = [0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65]
+coverage_risk_margin_grid = [0.0, 0.05, 0.1, 0.15]
+selected_abstention_margin = 0.0
+ece_bins = 10
+temperature_objective = "minimum-weighted-nll-then-distance-from-one-then-lower-temperature"
+threshold_objective = "maximum-weighted-f1-then-recall-then-distance-from-half-then-lower-threshold"
+abstention_objective = "none-predeclared-zero-margin-only"
+weighting = "inverse-inclusion-probability-hajek-ratio"
+
+[teacher]
+engine = "sol_teacher_10k_v2"
+expected_rows = 600
+provider_execution_in_modal = false
+labels_required_for_calibration = true
+
+[throughput]
+representative_rows = 128
+subset_seed = "modernbert-post-acquisition-calibration-v1-throughput-128"
+includes_six_checkpoint_ensemble = true
+includes_decode_and_calibration = true
+corpus_inference_authorised = false
+
+[compute]
+allowed_gpus = ["L4"]
+gpu_fallback_allowed = false
+retry_authorised = false
+phase_cost_cap_usd = 10
+shared_hard_cap_usd = 200
+maximum_locked_test_rows = 0
+maximum_corpus_rows = 0
+
+[phase_availability]
+prepare = true
+inspect = true
+validate = true
+calibration_inference = true
+throughput_benchmark = true
+training = false
+provider_execution = false
+locked_test = false
+corpus_inference = false

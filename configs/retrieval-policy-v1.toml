@@ -1,0 +1,156 @@
+schema_version = "1.0.0"
+policy_version = "stage-a-v1"
+policy_digest = "969b627a190c6649ab8f10972d7243b0c8f6f81ef5e65b03a3af48df060329d5"
+lexicon_version = "china-entity-alias-v1"
+
+[scope]
+apply_same_policy_to_every_subreddit = true
+
+[expansion]
+include_comments_in_direct_hit_submission = true
+include_direct_replies_to_direct_hit_comments = true
+max_reply_expansion_depth = 1
+recursive_reply_expansion = false
+
+[[terms]]
+id = "beijing"
+pattern = "Beijing"
+category = "place_actor"
+rationale = "Capital-city metonym and place reference; Stage B resolves target and relevance."
+
+[[terms]]
+id = "ccp"
+pattern = "CCP"
+category = "government_party"
+rationale = "Common English abbreviation for the Chinese Communist Party."
+
+[[terms]]
+id = "china"
+pattern = "China"
+category = "country_general"
+rationale = "Primary English country name."
+
+[[terms]]
+id = "chinese"
+pattern = "Chinese"
+category = "people_culture_language"
+rationale = "High-recall demonym and adjective; Stage B separates people, culture, and state targets."
+
+[[terms]]
+id = "chinese_communist_party"
+pattern = "Chinese Communist Party"
+category = "government_party"
+rationale = "Full English party name."
+
+[[terms]]
+id = "communist_party_of_china"
+pattern = "Communist Party of China"
+category = "government_party"
+rationale = "Official English party-name ordering."
+
+[[terms]]
+id = "hong_kong"
+pattern = "Hong Kong"
+category = "place_region"
+rationale = "China-related special administrative region; Stage B may reject unrelated local mentions."
+
+[[terms]]
+id = "mainland_china"
+pattern = "mainland China"
+category = "country_general"
+rationale = "Common disambiguating geographic expression."
+
+[[terms]]
+id = "peoples_republic_of_china"
+pattern = "People's Republic of China"
+category = "country_general"
+rationale = "Full English state name with ASCII apostrophe."
+
+[[terms]]
+id = "peoples_republic_of_china_curly"
+pattern = "People’s Republic of China"
+category = "country_general"
+rationale = "Full English state name with typographic apostrophe."
+
+[[terms]]
+id = "prc"
+pattern = "PRC"
+category = "country_general"
+rationale = "Common English abbreviation for the People's Republic of China."
+
+[[terms]]
+id = "shanghai"
+pattern = "Shanghai"
+category = "place_region"
+rationale = "Major city and metonym; Stage B resolves whether China is materially discussed."
+
+[[terms]]
+id = "taiwan"
+pattern = "Taiwan"
+category = "place_region"
+rationale = "Included for high recall in cross-strait discourse; Stage B rejects Taiwan-only material."
+
+[[terms]]
+id = "taiwanese"
+pattern = "Taiwanese"
+category = "people_culture_language"
+rationale = "Included for high recall in cross-strait discourse; Stage B resolves target."
+
+[[terms]]
+id = "tibet"
+pattern = "Tibet"
+category = "place_region"
+rationale = "China-related autonomous region and political topic."
+
+[[terms]]
+id = "tibetan"
+pattern = "Tibetan"
+category = "people_culture_language"
+rationale = "Demonym and adjective for Tibet-related discourse."
+
+[[terms]]
+id = "uighur"
+pattern = "Uighur"
+category = "people_culture_language"
+rationale = "Common alternative English spelling for Uyghur."
+
+[[terms]]
+id = "uighurs"
+pattern = "Uighurs"
+category = "people_culture_language"
+rationale = "Plural alternative English spelling."
+
+[[terms]]
+id = "uyghur"
+pattern = "Uyghur"
+category = "people_culture_language"
+rationale = "Common English spelling for the ethnic group and language."
+
+[[terms]]
+id = "uyghurs"
+pattern = "Uyghurs"
+category = "people_culture_language"
+rationale = "Plural common English spelling."
+
+[[terms]]
+id = "xi_jinping"
+pattern = "Xi Jinping"
+category = "government_person"
+rationale = "Full name avoids the severe ambiguity of bare Xi."
+
+[[terms]]
+id = "xinjiang"
+pattern = "Xinjiang"
+category = "place_region"
+rationale = "China-related autonomous region and political topic."
+
+[[ambiguity_rules]]
+id = "china_ceramic_material"
+term_ids = ["china"]
+phrases = ["bone china", "fine china", "china cabinet", "china cabinets", "china plate", "china plates", "china dish", "china dishes"]
+rationale = "Suppress only the overlapping China match in conventional ceramic/tableware senses."
+
+[[record_exclusion_rules]]
+id = "reddit_removed_sentinels"
+values = ["[deleted]", "[removed]"]
+rationale = "Exact Reddit removal sentinels contain no retrievable target text."

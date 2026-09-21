@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/reddit-china-stance/target-stance-v2-pilot.schema.json",
+  "title": "Target and stance ontology v2 pilot label",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["codability", "relevance", "targets"],
+  "properties": {
+    "codability": {
+      "enum": ["codable", "not_codable"]
+    },
+    "relevance": {
+      "enum": ["material", "not_material", null]
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "stance"],
+        "properties": {
+          "target": {
+            "enum": [
+              "china_general",
+              "government_ccp",
+              "people_identity",
+              "culture_media",
+              "company_tech_product",
+              "residual_other"
+            ]
+          },
+          "stance": {
+            "oneOf": [
+              {
+                "enum": ["negative", "positive", "mixed", "no_directed_stance"]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "target": { "const": "residual_other" }
+              },
+              "required": ["target"]
+            },
+            "then": {
+              "properties": {
+                "stance": { "type": "null" }
+              }
+            },
+            "else": {
+              "properties": {
+                "stance": {
+                  "enum": ["negative", "positive", "mixed", "no_directed_stance"]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "codability": { "const": "codable" }
+        },
+        "required": ["codability"]
+      },
+      "then": {
+        "properties": {
+          "relevance": { "enum": ["material", "not_material"] }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "relevance": { "const": "material" }
+              },
+              "required": ["relevance"]
+            },
+            "then": {
+              "properties": {
+                "targets": { "minItems": 1 }
+              }
+            },
+            "else": {
+              "properties": {
+                "targets": { "maxItems": 0 }
+              }
+            }
+          }
+        ]
+      },
+      "else": {
+        "properties": {
+          "relevance": { "type": "null" },
+          "targets": { "maxItems": 0 }
+        }
+      }
+    }
+  ]
+}

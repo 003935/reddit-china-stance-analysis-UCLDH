@@ -1,0 +1,88 @@
+schema_version = "1.0.0"
+kind = "modernbert-acquisition-policy-v1"
+purpose = "one-time-exploratory-probability-random-versus-active-query-comparison"
+evidence_boundary = "adaptive-model-assisted-development-not-human-validation"
+
+[source]
+dataset_revision = "97627c42893bc479c6a4952b1db38bbc33a60ac8"
+source_schema_version = "1.0.2"
+retrieval_policy_digest = "9e8c9050b9512fd83b2a844d4259bd3df8e3f84dc213460fc19407238266769a"
+stage_a_run_id = "834ff757fb7931e508c782d64db4f9e8761e4273edb8b2635c9c5bff84c406b1"
+language_policy_digest = "83857eb8b501d6bf262461c4ea2815e6649c9581acc84a031558f5cf83483be2"
+language_run_id = "34dbfdea18a7dafe84b8d5be891d6c7771a0ef71e67f5878f0ecc7130229a7b1"
+language_eligibility = "provisional_english"
+language_decision = "explicit-thesis-main-corpus-decision-2026-08-26"
+human_language_gate_accepted = false
+
+[exclusions]
+exclude_complete_teacher_10k = true
+exclude_legacy_reference = true
+exclude_factorised_development = true
+exclude_acquisition_evaluation = true
+exact_surface = true
+normalised_surface = true
+near_duplicate_algorithm = "token-trigram-simhash64"
+near_duplicate_minimum_characters = 80
+near_duplicate_maximum_hamming_distance = 3
+near_duplicate_minimum_length_ratio = 0.8
+near_duplicate_maximum_length_ratio = 1.25
+
+[random]
+rows = 1000
+seed = "modernbert-acquisition-v1-probability-random"
+sampling_unit = "near-duplicate-deduplicated-submission-thread"
+strata = ["subreddit", "year", "content_type", "retrieval_mode"]
+draw_order = 1
+
+[active]
+rows = 1000
+seed = "modernbert-acquisition-v1-active-tiebreak"
+draw_order = 2
+bucket_priority = ["rare_cell", "boundary", "multi_context", "uncertainty_disagreement"]
+
+[active.bucket_rows]
+rare_cell = 200
+boundary = 300
+multi_context = 100
+uncertainty_disagreement = 400
+
+[teacher]
+queries_per_arm = 1000
+arm_blinded = true
+dual_pass = true
+blind_tie_break = true
+informed_adjudication = true
+maximum_concurrent_jobs = 8
+estimated_wall_minutes_low = 46
+estimated_wall_minutes_high = 81
+
+[student]
+base_training_rows = 8147
+representation = "B4"
+optimiser_seeds = [47, 61, 89]
+components = ["relevance", "target_stance_b4"]
+trial_count = 12
+checkpoint_selection_rows = 600
+checkpoint_selection_source = "retained-factorised-v2-development"
+evaluation_rows = 600
+evaluation_source = "unused-factorised-v2-calibration-membership"
+
+[gate]
+rare_cell_minimum_evaluation_support = 10
+rare_cell_mean_gain_minimum = 0.03
+bootstrap_replicates = 10000
+bootstrap_confidence = 0.95
+bootstrap_lower_bound_must_exceed = 0.0
+minimum_improved_seeds = 2
+maximum_tuple_f1_decline = 0.01
+maximum_material_recall_decline = 0.01
+maximum_supported_target_regression = 0.05
+exact_consensus_direction_must_not_reverse = true
+maximum_invalid_outputs = 0
+maximum_locked_test_rows_accessed = 0
+
+[budget]
+shared_hard_cap_usd = 200
+modal_preparation_and_scoring_phase_cap_usd = 50
+modal_training_phase_cap_usd = 25
+currency_telemetry_available_for_codex_teacher = false

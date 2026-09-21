@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "awogies/7719723843r",
+  "revision": "97627c42893bc479c6a4952b1db38bbc33a60ac8",
+  "compressed_bytes": 169284685552,
+  "files": [
+    {"path": "AskReddit_comments.zst", "size": 95982195474, "sha256": "74052048b604e0277db336053cd896e781da97078e1501564f15e2cf71ea2548"},
+    {"path": "AskReddit_submissions.zst", "size": 5243004908, "sha256": "a9078607675ffcd2f2276e9c4bfe167368dac011199533f8450460dcf7a6ed06"},
+    {"path": "China_comments.zst", "size": 626288693, "sha256": "92b89ba7f702963134ea98e4cd3b96424e944d3ad227530fddb7a5eb87588d95"},
+    {"path": "China_submissions.zst", "size": 117503735, "sha256": "7532bbacaf2d792d1d675c27377ace07d7005e01627cd5be8aa8b414ba81651b"},
+    {"path": "ChineseLanguage_comments.zst", "size": 152427415, "sha256": "6d5ebfc417c9c738cd35b3c614ef02f91b405751a6d376f369b8aa78aee0b732"},
+    {"path": "ChineseLanguage_submissions.zst", "size": 37324656, "sha256": "2413ed8f44e91fc01db9a9ee6ec33d6de08311d74b0860fffb29d33c9f915bdb"},
+    {"path": "Sino_comments.zst", "size": 139039431, "sha256": "b26020472f243bd2d0e93613c6a5b474701e24f66d0d92866088dacd8a4653e8"},
+    {"path": "Sino_submissions.zst", "size": 63061109, "sha256": "46f09a3c98734c005cfec812661c3bf81c164eb21911d7ecd707e2efb1e7b3cc"},
+    {"path": "funny_comments.zst", "size": 11548237373, "sha256": "d750ba15ec04ff11a73e779519bafa3c060b39da09d55d6c98ddb4d40f24bdf5"},
+    {"path": "funny_submissions.zst", "size": 2497801599, "sha256": "23aac2692c548f10028cd2655d184cc759cbed01539cdd2994870e4e5e9a1060"},
+    {"path": "gaming_comments.zst", "size": 11308486669, "sha256": "9d05e79691ee1b69801926c1074094268d3fa3eec93345288fa094e8a1ddf780"},
+    {"path": "gaming_submissions.zst", "size": 1699747722, "sha256": "d1614435026d25c327f040b2eb75a74d1babc50a0ed7b6c34dc0bd47ba757c58"},
+    {"path": "geopolitics_comments.zst", "size": 325230829, "sha256": "8d2b1113f52074054e8a9de9497889b8d3a5522be8e42777a8f07777a149f0bf"},
+    {"path": "geopolitics_submissions.zst", "size": 33927761, "sha256": "fcbb04ab06ecc8d6846aa0f722c138c96f74b381efb6329f818343e16a0f7b9a"},
+    {"path": "news_comments.zst", "size": 11568818133, "sha256": "67964a7238320723dc2f8cc0c5c66cbf22429309364184aa12acc9123383ce04"},
+    {"path": "news_submissions.zst", "size": 1270861349, "sha256": "bf82b087fd8989a889c0b888e3b3d11d8e422dd43363701d04180f85a3f33d13"},
+    {"path": "todayilearned_comments.zst", "size": 8653500966, "sha256": "29cc26d9a2892a788de277492da525326ac5a0a65da755a93cf5bbb15b5c54ad"},
+    {"path": "todayilearned_submissions.zst", "size": 583323249, "sha256": "25c2fae8cb79db5caa933c3cbfea5cae0923d34169ce7774d69c45766ba22894"},
+    {"path": "worldnews_comments.zst", "size": 16446396092, "sha256": "03d73ba281c420d4e868a5eda3f5fe1abb843f813b31d210d45e8ac101a59231"},
+    {"path": "worldnews_submissions.zst", "size": 987508389, "sha256": "3b9cc74132ab428dca46c43823b1a2f7e6e1dce35b244752ea17a66fef9155c5"}
+  ]
+}

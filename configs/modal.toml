@@ -1,0 +1,31 @@
+schema_version = "1.0.0"
+
+[modal]
+app_name = "reddit-china-stance-ingestion"
+volume_name = "reddit-china-stance-data"
+environment = "main"
+mount_path = "/data"
+
+[smoke]
+default_rows_per_file = 1000
+hard_max_rows_per_file = 10000
+source_files = ["geopolitics_submissions.zst", "ChineseLanguage_comments.zst"]
+max_containers = 1
+timeout_seconds = 1800
+cpu = 2.0
+memory_request_mib = 2048
+memory_limit_mib = 4096
+
+[guardrails]
+create_volume_implicitly = false
+run_full_corpus_from_smoke_app = false
+return_raw_text_to_local_machine = false
+overwrite_existing_outputs = false
+
+[persistent_cache]
+source_manifest = "configs/source-files.json"
+confirmation = "CACHE_ALL_20_ARCHIVES"
+max_containers = 4
+timeout_seconds_per_archive = 86400
+download_chunk_mib = 8
+retain_raw_archives_through_thesis = true

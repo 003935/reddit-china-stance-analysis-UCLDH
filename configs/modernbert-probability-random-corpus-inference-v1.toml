@@ -1,0 +1,108 @@
+schema_version = "1.0.0"
+kind = "modernbert-probability-random-corpus-inference-policy-v1"
+namespace = "student-modernbert-probability-random-corpus-inference-v1"
+purpose = "provisional-full-corpus-inference-with-the-calibrated-probability-random-ensemble"
+evidence_boundary = "model-assisted-provisional-corpus-predictions-not-human-validated-thesis-truth"
+
+[eligible_frame]
+prepared_run_id = "20aa5baeb55ac09ae57a1e681ebe6886aac247ece48c7aaa7ad05b2c65861d9e"
+source_row_count = 910141
+post_acquisition_row_count = 908141
+source_sha256 = "d9544843792536a144f61a8015e082b9a690023e19c842ddb7c4f1cfe660ce57"
+source_projection_sha256 = "6ebe5e5d8aa4734b2ce455719ded69db2ae1f610309ba7abc959adb3af5b09b6"
+acquisition_exclusion_count = 2000
+acquisition_ledger_id = "532062f085d6ac6ed41b603b7f987157f32f45f06d9e48e58af40e4ddcfa3f74"
+acquisition_ledger_file_sha256 = "10c2555efad8d87d7ba79a30fa6a4547c5584ad600dca79c011585aac2d7dc16"
+exclusion_keys = ["opaque_id", "thread_id", "near_duplicate_cluster_id"]
+
+[candidate]
+sample_run_id = "247c077975b5527203e2de709e8c884dd90ca8e74976130d4b30da5a4a5c957c"
+sample_receipt_id = "62c3bd62d9e6d547a441f3c05499f6e80a9f244d0830d9a271c50f804122cc32"
+teacher_run_id = "75c48c76db22be4f3eb009ec379cdf75e8ac88761b7475e6d9ce31f4f3ec0949"
+teacher_receipt_id = "809fe8528f6928c0a1fa9b7ba55a18fa7a9beb0ced570f73eb60df239710ae31"
+teacher_receipt_file_sha256 = "d3a7bf0ca0fe0e6162b90dc91a458251676a6ec79229e2fa915e7d5daf02f69e"
+checkpoint_cohort_id = "ad01414410538d5001ac5fb0070751ccfd251d31c5b75c5460bcd5a0dbe06f9b"
+calibration_run_id = "3a40abaa140214f4f4d7ac2cffac44bcdbff0da879b157f83f0c97b67aa5beec"
+calibration_receipt_id = "f59dd582cb24b0f38b0e69aa56dd889e8031b6234f409acb71dbfd021d50e9af"
+calibration_id = "07b429e62653fb8513364327f67e7f620cf44496471c8443023767ad5f66526c"
+checkpoint_count = 6
+ensemble = "unweighted-arithmetic-mean-aligned-raw-logits-all-three-seeds"
+stance_estimand_classes = ["negative", "no_directed_stance", "positive"]
+mixed_in_estimand = false
+
+[execution]
+input_shards = 120
+maximum_concurrent_l4s = 10
+batch_size = 8
+smoke_rows = 128
+smoke_shard = "00"
+full_render = "factorised-target-parent-submission-v2"
+token_truncation = "manual-retain-final-token-max-768"
+precision = "bf16-autocast"
+retry_authorised = false
+gpu_job_topology = "120-shards-at-most-10-concurrent-each-tokenised-once-and-scored-by-all-six-checkpoints-sequentially"
+launch_completion = "parent-remains-live-and-gathers-all-child-calls"
+launch_parent_timeout_seconds = 86400
+platform_preemption_recovery_authorised = true
+maximum_platform_preemption_recoveries_per_call = 1
+maximum_platform_preemption_recoveries_global = 18
+maximum_platform_execution_attempts_per_call = 2
+execution_attempt_permit_gate = "entry-time-atomic-per-job-queue-partition"
+execution_attempt_permit_partition_ttl_seconds = 604800
+provider_budget_gate_required = false
+provider_budget_gate_verified = false
+proceed_without_provider_hard_cap_authorised = true
+
+[compute]
+gpu_type = "L4"
+gpu_fallback_allowed = false
+rate_card_usd_per_gpu_second = "0.000222"
+measured_steady_state_rows_per_second = "13.23"
+measured_one_time_model_load_seconds_per_worker = "28.077"
+projected_steady_state_gpu_seconds = "68642.554800"
+projected_model_load_gpu_seconds = "3369.240000"
+projected_gpu_seconds = "72011.794800"
+projected_cost_usd = "15.986618"
+conservative_multiplier = "1.5"
+conservative_gpu_seconds = "108017.692200"
+conservative_cost_usd = "23.979928"
+maximum_worker_seconds = 750
+maximum_platform_execution_attempts_per_call = 2
+budgeted_base_attempt_gpu_seconds = "90000.000000"
+budgeted_base_attempt_cost_usd = "19.980000"
+maximum_platform_preemption_recoveries = 18
+budgeted_recovery_attempt_gpu_seconds = "13500.000000"
+budgeted_recovery_attempt_cost_usd = "2.997000"
+queue_bounded_authorised_execution_gpu_seconds = "103500.000000"
+queue_bounded_authorised_execution_cost_usd = "22.977000"
+prior_failed_gpu_seconds_estimate = "9889.000000"
+prior_failed_cost_estimate_usd = "2.195358"
+prior_smoke_cost_usd = "0.052512"
+new_smoke_cost_monitoring_target_usd = "0.05"
+queue_bounded_cumulative_cost_projection_usd = "25.274870"
+smoke_phase_operational_monitoring_target_usd = "0.05"
+full_phase_operational_monitoring_target_usd = "25.00"
+cumulative_operational_monitoring_target_usd = "30.00"
+provider_billing_hard_cap_enforced = false
+proceed_without_provider_hard_cap_authorised = true
+maximum_locked_test_rows = 0
+maximum_corpus_rows = 908141
+
+[phase_availability]
+prepare = true
+smoke = true
+full_corpus_inference = true
+aggregate = true
+validate = true
+training = false
+provider_execution = false
+locked_test = false
+hf_upload = false
+commit = false
+push = false
+
+[analysis]
+scored_scope_rows = 908141
+calibration_member_rows = 600
+default_label_unseen_rows = 907541
+default_thesis_scope = "post-acquisition-corpus-excluding-calibration-members"

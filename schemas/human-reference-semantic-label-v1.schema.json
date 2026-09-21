@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/reddit-china-stance/human-reference-semantic-label-v1.schema.json",
+  "title": "Minimal human-reference semantic label v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["relevance", "target_stances"],
+  "properties": {
+    "relevance": {
+      "enum": ["material", "not_material", "unclear"]
+    },
+    "target_stances": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "stance"],
+        "properties": {
+          "target": {
+            "enum": ["china_general", "government_ccp", "people_culture", "other"]
+          },
+          "stance": {
+            "enum": ["negative", "positive", "mixed", "no_directed_stance", "unclear"]
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "relevance": { "const": "material" } },
+        "required": ["relevance"]
+      },
+      "then": {
+        "properties": { "target_stances": { "minItems": 1 } }
+      },
+      "else": {
+        "properties": { "target_stances": { "maxItems": 0 } }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/reddit-china-stance/language-decision.schema.json",
+  "title": "Candidate-scoped provisional language decision",
+  "description": "Metadata-only language evidence. No row is eligible for exclusion before the blinded human audit accepts a threshold.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "content_type",
+    "primary_language_code",
+    "primary_confidence",
+    "primary_english_confidence",
+    "primary_top_predictions",
+    "provisional_status",
+    "exclusion_allowed",
+    "detector_id",
+    "language_policy_digest",
+    "stage_a_run_manifest_id"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "type": "string", "minLength": 1 },
+    "content_type": { "enum": ["submission", "comment"] },
+    "primary_language_code": { "type": "string", "minLength": 1 },
+    "primary_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "primary_english_confidence": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "primary_top_predictions": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["language_code", "confidence"],
+        "properties": {
+          "language_code": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "provisional_status": {
+      "enum": ["provisional_english", "provisional_non_english", "uncertain"]
+    },
+    "exclusion_allowed": { "const": false },
+    "detector_id": { "const": "fasttext-lid.176.bin" },
+    "language_policy_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "stage_a_run_manifest_id": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

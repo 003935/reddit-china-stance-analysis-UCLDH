@@ -1,0 +1,24 @@
+schema_version = "1.0.0"
+checked_at = "2026-08-23"
+
+[dataset]
+provider = "huggingface"
+dataset_id = "awogies/7719723843r"
+revision = "97627c42893bc479c6a4952b1db38bbc33a60ac8"
+archive_format = "zstd-jsonl"
+zst_file_count = 20
+compressed_bytes = 169284685552
+compressed_gib = 157.66
+viewer_available = false
+search_available = false
+statistics_available = false
+license = "unknown"
+license_evidence = "No licence was stated in the dataset repository README at check time."
+
+[sources]
+repository_url = "https://huggingface.co/datasets/awogies/7719723843r"
+pinned_tree_url = "https://huggingface.co/datasets/awogies/7719723843r/tree/97627c42893bc479c6a4952b1db38bbc33a60ac8"
+api_url = "https://huggingface.co/api/datasets/awogies/7719723843r/revision/97627c42893bc479c6a4952b1db38bbc33a60ac8"
+
+[limitations]
+note = "Dataset metadata and local receipt facts are pinned here. Raw archives and row-level artefacts remain private and ignored by Git."

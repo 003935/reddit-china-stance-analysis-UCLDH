@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/reddit-china-stance/canonical-record.schema.json",
+  "title": "Canonical Reddit record",
+  "description": "One in-scope source row before candidate-scoped language classification; author identity is deliberately absent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "source_id",
+    "content_type",
+    "subreddit",
+    "stratum",
+    "created_utc",
+    "year",
+    "month",
+    "language_status",
+    "text",
+    "text_sha256",
+    "submission_id",
+    "parent_id",
+    "source_file"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.2" },
+    "record_id": { "type": "string", "minLength": 1 },
+    "source_id": { "type": "string", "minLength": 1 },
+    "content_type": { "enum": ["submission", "comment"] },
+    "subreddit": { "type": "string", "minLength": 1 },
+    "stratum": { "enum": ["domain", "news_political", "general_interest"] },
+    "created_utc": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "(?:Z|[+]00:00)$"
+    },
+    "year": { "type": "integer", "minimum": 2020, "maximum": 2025 },
+    "month": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "language_status": { "const": "unclassified" },
+    "text": { "type": "string", "minLength": 1 },
+    "text_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "submission_id": { "type": "string", "minLength": 1 },
+    "parent_id": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "null" }
+      ]
+    },
+    "source_file": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "content_type": { "const": "submission" } },
+        "required": ["content_type"]
+      },
+      "then": { "properties": { "parent_id": { "type": "null" } } },
+      "else": { "properties": { "parent_id": { "type": "string", "minLength": 1 } } }
+    }
+  ]
+}

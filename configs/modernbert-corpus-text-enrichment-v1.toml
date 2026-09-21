@@ -1,0 +1,25 @@
+schema_version = "1.0.0"
+kind = "modernbert-corpus-text-enrichment-policy-v1"
+dataset_revision = "97627c42893bc479c6a4952b1db38bbc33a60ac8"
+source_schema_version = "1.0.2"
+canonical_rows = 548963310
+corpus_rows = 908141
+shard_count = 120
+calibration_member_rows = 600
+hf_repo_id = "aisafteycommons/reddit-china-stance-modernbert-corpus-v1"
+hf_previous_revision = "6e3466ccc56c1a846e30375c8b99924f6efa5723"
+hf_previous_export_id = "60d0da5c61ad075a9f71458addb3761d42a315514b589deaec27297096f067af"
+hf_previous_manifest_sha256 = "a3d531c8f8719335cc35d862f0a6e1f712ad0b43e44ac325243ef88f2bbc13ac"
+parent_enrichment_authority_id = "10707280a32795edac03d341cee5b2971d045d477f941b382f05ae5e88d470f9"
+parent_enrichment_receipt_id = "084c84a7c16b00d74819c647bd4ec9fdf4fef9e0a5db9b36ad8b9321e5c2ead6"
+parent_enrichment_source_bundle_id = "563b71779f1ed7db0f9bf8caea04ad4fcb9f7a1c9a2710a5d21ff33bd474cbcb"
+parent_canonical_inventory_id = "5853e4ce4c61ce0995328912e23c77300510e2186aed6096f430e6f28f3439b2"
+added_columns = ["text"]
+preserve_columns = ["corpus_position", "opaque_id", "source_id", "created_utc"]
+forbidden_columns = ["author", "body", "target_text", "parent_context", "submission_context", "thread_id", "submission_id", "comment_id", "label_json", "logits"]
+contains_reddit_text = true
+text_source_field = "canonical_record.text"
+text_hash_field = "canonical_record.text_sha256"
+text_join_key = "canonical_record.record_id = parent.source_id"
+locked_test_rows_accessed = 0
+confirmation = "ADD_CANONICAL_TEXT_TO_PRIVATE_HF_CORPUS"

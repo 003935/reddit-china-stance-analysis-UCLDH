@@ -1,0 +1,99 @@
+schema_version = "2.0.0"
+
+[source]
+dataset_id = "awogies/7719723843r"
+revision = "97627c42893bc479c6a4952b1db38bbc33a60ac8"
+expected_zst_files = 20
+expected_compressed_bytes = 169284685552
+canonical_schema = "schemas/canonical-record.schema.json"
+retain_author = false
+overwrite_existing = false
+
+[scope]
+start_utc = "2020-01-01T00:00:00Z"
+end_utc_exclusive = "2026-01-01T00:00:00Z"
+content_types = ["submission", "comment"]
+
+[retrieval]
+policy = "configs/retrieval-policy-v3.toml"
+apply_same_policy_to_every_subreddit = true
+
+[language]
+policy = "configs/language-policy-v1.toml"
+exclude_without_audit = false
+
+[context]
+include_submission = true
+include_immediate_parent = true
+truncation = "deterministic_head_tail"
+context_resolves_target_text_only = true
+
+[annotation]
+schema = "schemas/human-reference-semantic-label-v1.schema.json"
+rubric = "docs/rubrics/human-reference-semantic-v1.md"
+stages = ["relevance", "targets", "stance"]
+accept_schema_invalid_output = false
+automatic_model_fallback = false
+
+[development_proxy]
+rows = 452
+first_pass_models = ["codex-sol-composite-pass-b-v1", "codex-sol-composite-pass-c-v1"]
+eligible_rows = 299
+contentious_rows_pending_adjudication = 153
+human_gold = false
+independent_human_evaluation = false
+
+[teacher.gemma]
+provider = "cerebras"
+model_id = "google/gemma-4-31B-it"
+revision = "842da3794eaa0b77d5f08bae87a17459d91ff475"
+reasoning_effort = "none"
+max_output_tokens = 512
+
+[teacher.gpt_oss]
+provider = "groq"
+model_id = "openai/gpt-oss-20b"
+revision = "6cee5e81ee83917806bbde320786a8fb61efebee"
+reasoning_effort = "low"
+max_output_tokens = 512
+
+[teacher.sol]
+provider = "codex"
+model_id = "gpt-5.6-sol"
+revision = "REQUIRED_PINNED_MODEL_REVISION"
+reasoning_effort = "high"
+max_output_tokens = 2048
+
+[teacher.run]
+initial_rows = 10000
+base_seed = 20250823
+effective_prompt_sha256 = "REQUIRED_EFFECTIVE_PROMPT_SHA256"
+sol_route_invalid = true
+sol_route_disagreement = true
+sol_route_unclear = true
+agreement_audit_size = 500
+public_receipts_metadata_only = true
+
+[student]
+model = "answerdotai/ModernBERT-large"
+revision = "45bb4654a4d5aaff24dd11d4781fa46d39bf8c13"
+split_unit = "submission_thread"
+time_aware = true
+max_length = 768
+attention_implementation = "sdpa"
+max_concurrent_gpus = 8
+hard_cost_cap_usd = 200
+ladder_seeds = [101, 202, 303]
+recipe_seed = 7
+stability_seeds = [13, 29]
+confirmatory_seeds = [47, 61, 89]
+learning_curve_rows = [2000, 5000, 10000]
+learning_curve_rows_are_nominal = true
+recipe_development_rows = 222
+student_locked_test_rows = 230
+advance_only_on_registered_locked_test_improvement = true
+
+[final_evaluation]
+independent_human_double_coding_required = true
+model_outputs_hidden_from_humans = true
+freeze_before_model_evaluation = true

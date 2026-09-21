@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/reddit-china-stance/candidate-record.schema.json",
+  "title": "Stage A candidate record",
+  "description": "One record_id-keyed candidate preserving every retrieval selection path and its language-decision provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "content_type",
+    "retrieval_channels",
+    "selection_evidence",
+    "retrieval_policy_version",
+    "retrieval_policy_digest",
+    "manifest_id",
+    "language_decision"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "type": "string", "minLength": 1 },
+    "content_type": { "enum": ["submission", "comment"] },
+    "retrieval_channels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "direct_lexical",
+          "submission_expansion",
+          "direct_reply_expansion"
+        ]
+      }
+    },
+    "selection_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/selectionEvidence" }
+    },
+    "retrieval_policy_version": { "type": "string", "minLength": 1 },
+    "retrieval_policy_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "manifest_id": { "type": "string", "minLength": 1 },
+    "language_decision": { "$ref": "#/$defs/languageDecision" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "content_type": { "const": "submission" } },
+        "required": ["content_type"]
+      },
+      "then": {
+        "properties": {
+          "selection_evidence": {
+            "items": {
+              "allOf": [
+                { "$ref": "#/$defs/selectionEvidence" },
+                { "properties": { "channel": { "const": "direct_lexical" } } }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "direct_lexical" } }
+        }
+      },
+      "then": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "direct_lexical" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "direct_lexical" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "direct_lexical" } }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "submission_expansion" } }
+        }
+      },
+      "then": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "submission_expansion" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "submission_expansion" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "submission_expansion" } }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "direct_reply_expansion" } }
+        }
+      },
+      "then": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "direct_reply_expansion" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selection_evidence": {
+            "contains": {
+              "type": "object",
+              "properties": { "channel": { "const": "direct_reply_expansion" } },
+              "required": ["channel"]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "retrieval_channels": { "contains": { "const": "direct_reply_expansion" } }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "selectionEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "anchor_record_id",
+        "anchor_relation",
+        "expansion_depth",
+        "match_term_ids"
+      ],
+      "properties": {
+        "channel": {
+          "enum": [
+            "direct_lexical",
+            "submission_expansion",
+            "direct_reply_expansion"
+          ]
+        },
+        "anchor_record_id": { "type": "string", "minLength": 1 },
+        "anchor_relation": { "enum": ["self", "submission", "direct_parent"] },
+        "expansion_depth": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "match_term_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "channel": { "const": "direct_lexical" } },
+            "required": ["channel"]
+          },
+          "then": {
+            "properties": {
+              "anchor_relation": { "const": "self" },
+              "expansion_depth": { "const": 0 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "channel": { "const": "submission_expansion" } },
+            "required": ["channel"]
+          },
+          "then": {
+            "properties": {
+              "anchor_relation": { "const": "submission" },
+              "expansion_depth": { "const": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "channel": { "const": "direct_reply_expansion" } },
+            "required": ["channel"]
+          },
+          "then": {
+            "properties": {
+              "anchor_relation": { "const": "direct_parent" },
+              "expansion_depth": { "const": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "languageDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "language_code", "model_run_manifest_id"],
+      "properties": {
+        "status": { "enum": ["unclassified", "accepted", "rejected", "unclear"] },
+        "language_code": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "null" }
+          ]
+        },
+        "model_run_manifest_id": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "null" }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "unclassified" } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "language_code": { "type": "null" },
+              "model_run_manifest_id": { "type": "null" }
+            }
+          },
+          "else": {
+            "properties": {
+              "language_code": { "type": "string", "minLength": 1 },
+              "model_run_manifest_id": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

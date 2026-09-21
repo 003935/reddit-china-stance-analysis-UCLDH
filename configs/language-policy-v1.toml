@@ -1,0 +1,41 @@
+schema_version = "1.0.0"
+policy_version = "language-policy-v1"
+output_schema_version = "1.0.0"
+
+[primary]
+detector_id = "fasttext-lid.176.bin"
+package = "fasttext-wheel"
+package_version = "0.9.2"
+model_url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin"
+model_path = "/opt/language-models/lid.176.bin"
+model_bytes = 131266198
+model_sha256 = "7e69ec5451bc261cc7844e49e4792a85d7f09c06789ec800fc4a44aec362764e"
+top_k = 5
+
+[challenger]
+detector_id = "lingua-all-languages"
+package = "lingua-language-detector"
+package_version = "2.2.0"
+language_set = "all"
+low_accuracy_mode = false
+
+[sampling]
+sample_size = 100000
+seed = "reddit-china-stance-language-benchmark-v1"
+minimum_per_nonempty_stratum = 20
+stratify_by = ["subreddit", "year", "content_type", "retrieval_channel_bucket"]
+
+[triage]
+high_confidence_threshold = 0.80
+exclude_without_human_audit = false
+
+[compute]
+requested_cpus = 2
+requested_memory_mib = 8192
+max_containers = 16
+conservative_scan_rows_per_second = 5000
+conservative_primary_rows_per_second = 5000
+conservative_challenger_rows_per_second = 50
+cost_overhead_factor = 1.5
+hard_max_benchmark_cost_usd = 2
+hard_max_estimated_cost_usd = 25

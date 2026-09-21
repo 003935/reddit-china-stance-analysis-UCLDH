@@ -1,0 +1,36 @@
+schema_version = "1.0.0"
+source_document = "thesis.md (user-provided draft; local path not retained)"
+
+[resolution]
+decision_id = "supersede-legacy-counts-v1"
+decision = "supersede_with_canonical_receipt_counts"
+accepted_at = "2026-08-24"
+reason = "The draft claims cannot describe one pipeline stage; Stage A will establish the replacement filtered count."
+
+[[claims]]
+claim_id = "line-128-raw"
+line = 128
+stage = "raw_collected"
+content_type = "all"
+count = 73020520
+
+[[claims]]
+claim_id = "line-128-filtered"
+line = 128
+stage = "legacy_keyword_filtered"
+content_type = "all"
+count = 949624
+
+[[claims]]
+claim_id = "line-261-submissions"
+line = 261
+stage = "legacy_analysis_corpus"
+content_type = "submission"
+count = 414095
+
+[[claims]]
+claim_id = "line-261-comments"
+line = 261
+stage = "legacy_analysis_corpus"
+content_type = "comment"
+count = 4661222

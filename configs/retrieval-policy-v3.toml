@@ -1,0 +1,708 @@
+schema_version = "1.0.0"
+policy_version = "stage-a-v3"
+policy_digest = "5b7ced047d90407ed8849bcec8744078ed768e74eb78851624c67c009b684d46"
+lexicon_version = "china-entity-alias-v3"
+
+[scope]
+apply_same_policy_to_every_subreddit = true
+
+[expansion]
+include_comments_in_direct_hit_submission = true
+include_direct_replies_to_direct_hit_comments = true
+max_reply_expansion_depth = 1
+recursive_reply_expansion = false
+
+[[terms]]
+id = "beijing"
+pattern = "Beijing"
+category = "place_actor"
+rationale = "Capital-city metonym and place reference; Stage B resolves target and relevance."
+
+[[terms]]
+id = "ccp"
+pattern = "CCP"
+category = "government_party"
+rationale = "Common English abbreviation for the Chinese Communist Party."
+
+[[terms]]
+id = "china"
+pattern = "China"
+category = "country_general"
+rationale = "Primary English country name."
+
+[[terms]]
+id = "chinese"
+pattern = "Chinese"
+category = "people_culture_language"
+rationale = "High-recall demonym and adjective; Stage B separates people, culture, and state targets."
+
+[[terms]]
+id = "chinese_communist_party"
+pattern = "Chinese Communist Party"
+category = "government_party"
+rationale = "Full English party name."
+
+[[terms]]
+id = "communist_party_of_china"
+pattern = "Communist Party of China"
+category = "government_party"
+rationale = "Official English party-name ordering."
+
+[[terms]]
+id = "hong_kong"
+pattern = "Hong Kong"
+category = "place_region"
+rationale = "China-related special administrative region; Stage B may reject unrelated local mentions."
+
+[[terms]]
+id = "mainland_china"
+pattern = "mainland China"
+category = "country_general"
+rationale = "Common disambiguating geographic expression."
+
+[[terms]]
+id = "peoples_republic_of_china"
+pattern = "People's Republic of China"
+category = "country_general"
+rationale = "Full English state name with ASCII apostrophe."
+
+[[terms]]
+id = "peoples_republic_of_china_curly"
+pattern = "People’s Republic of China"
+category = "country_general"
+rationale = "Full English state name with typographic apostrophe."
+
+[[terms]]
+id = "prc"
+pattern = "PRC"
+category = "country_general"
+rationale = "Common English abbreviation for the People's Republic of China."
+
+[[terms]]
+id = "shanghai"
+pattern = "Shanghai"
+category = "place_region"
+rationale = "Major city and metonym; Stage B resolves whether China is materially discussed."
+
+[[terms]]
+id = "taiwan"
+pattern = "Taiwan"
+category = "place_region"
+rationale = "Included for high recall in cross-strait discourse; Stage B rejects Taiwan-only material."
+
+[[terms]]
+id = "taiwanese"
+pattern = "Taiwanese"
+category = "people_culture_language"
+rationale = "Included for high recall in cross-strait discourse; Stage B resolves target."
+
+[[terms]]
+id = "tibet"
+pattern = "Tibet"
+category = "place_region"
+rationale = "China-related autonomous region and political topic."
+
+[[terms]]
+id = "tibetan"
+pattern = "Tibetan"
+category = "people_culture_language"
+rationale = "Demonym and adjective for Tibet-related discourse."
+
+[[terms]]
+id = "uighur"
+pattern = "Uighur"
+category = "people_culture_language"
+rationale = "Common alternative English spelling for Uyghur."
+
+[[terms]]
+id = "uighurs"
+pattern = "Uighurs"
+category = "people_culture_language"
+rationale = "Plural alternative English spelling."
+
+[[terms]]
+id = "uyghur"
+pattern = "Uyghur"
+category = "people_culture_language"
+rationale = "Common English spelling for the ethnic group and language."
+
+[[terms]]
+id = "uyghurs"
+pattern = "Uyghurs"
+category = "people_culture_language"
+rationale = "Plural common English spelling."
+
+[[terms]]
+id = "xi_jinping"
+pattern = "Xi Jinping"
+category = "government_person"
+rationale = "Full name avoids the severe ambiguity of bare Xi."
+
+[[terms]]
+id = "xinjiang"
+pattern = "Xinjiang"
+category = "place_region"
+rationale = "China-related autonomous region and political topic."
+
+[[terms]]
+id = "alibaba"
+pattern = "Alibaba"
+category = "company_technology"
+rationale = "High-signal Chinese company alias added in the systematic v2 company expansion."
+
+[[terms]]
+id = "alipay"
+pattern = "Alipay"
+category = "company_technology"
+rationale = "High-signal Chinese payments service observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "baidu"
+pattern = "Baidu"
+category = "company_technology"
+rationale = "High-signal Chinese company alias added in the systematic v2 company expansion."
+
+[[terms]]
+id = "bytedance"
+pattern = "ByteDance"
+category = "company_technology"
+rationale = "High-signal Chinese company alias added in the systematic v2 company expansion."
+
+[[terms]]
+id = "cantonese"
+pattern = "Cantonese"
+category = "people_culture_language"
+rationale = "Chinese language variety observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "china_cdc"
+pattern = "China CDC"
+category = "government_organisation"
+rationale = "Specific Chinese public-health organisation observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "china_cdc_domain"
+pattern = "chinacdc.cn"
+category = "government_organisation"
+rationale = "Specific Chinese public-health domain observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "china_irl_slug"
+pattern = "China_IRL"
+category = "country_general"
+rationale = "Compound China token observed in text and missed by bounded matching of bare China."
+
+[[terms]]
+id = "chinas"
+pattern = "Chinas"
+category = "country_general"
+rationale = "Common apostrophe-free possessive or inflection observed in a confirmed v1 miss."
+
+[[terms]]
+id = "chineses"
+pattern = "Chineses"
+category = "people_culture_language"
+rationale = "Non-standard inflection observed in a confirmed v1 miss; Stage B resolves usage."
+
+[[terms]]
+id = "chinese_handwriting_slug"
+pattern = "Chinese_handwriting"
+category = "people_culture_language"
+rationale = "Compound Chinese-language token observed in a confirmed v1 miss."
+
+[[terms]]
+id = "chinese_language_slug"
+pattern = "ChineseLanguage"
+category = "people_culture_language"
+rationale = "Compound Chinese-language token observed in a confirmed v1 miss."
+
+[[terms]]
+id = "chongqing"
+pattern = "Chongqing"
+category = "place_region"
+rationale = "Major Chinese municipality observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "dalu_hanzi"
+pattern = "大陆"
+category = "country_general"
+rationale = "Chinese-script mainland reference observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "evergrande"
+pattern = "Evergrande"
+category = "company_technology"
+rationale = "High-signal Chinese company alias observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "guangzhou"
+pattern = "Guangzhou"
+category = "place_region"
+rationale = "Major Chinese city observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "hanzi"
+pattern = "hanzi"
+category = "people_culture_language"
+rationale = "Chinese writing-system alias observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "hanyu_hanzi"
+pattern = "汉语"
+category = "people_culture_language"
+rationale = "Chinese-script language alias observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "hsk"
+pattern = "HSK"
+category = "people_culture_language"
+rationale = "Chinese-language proficiency examination alias observed in a confirmed v1 miss."
+
+[[terms]]
+id = "huawei"
+pattern = "Huawei"
+category = "company_technology"
+rationale = "High-signal Chinese company alias supported by three confirmed v1 challenger misses."
+
+[[terms]]
+id = "huangyan_island"
+pattern = "Huangyan Island"
+category = "place_region"
+rationale = "China-related territorial alias observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "huangyan_island_hanzi"
+pattern = "黄岩岛"
+category = "place_region"
+rationale = "Chinese-script territorial alias observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "jiangsu"
+pattern = "Jiangsu"
+category = "place_region"
+rationale = "Chinese province supported by two confirmed v1 challenger misses."
+
+[[terms]]
+id = "kmt"
+pattern = "KMT"
+category = "government_party"
+rationale = "Common Kuomintang abbreviation observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "kuomintang"
+pattern = "Kuomintang"
+category = "government_party"
+rationale = "Full party name observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "macao"
+pattern = "Macao"
+category = "place_region"
+rationale = "English spelling of the Chinese special administrative region observed in a v1 miss."
+
+[[terms]]
+id = "macau"
+pattern = "Macau"
+category = "place_region"
+rationale = "Common English spelling of the Chinese special administrative region observed in a v1 miss."
+
+[[terms]]
+id = "mandarin"
+pattern = "Mandarin"
+category = "people_culture_language"
+rationale = "Chinese language alias supported by thirteen confirmed v1 challenger misses."
+
+[[terms]]
+id = "maoism"
+pattern = "Maoism"
+category = "government_party"
+rationale = "Specific China-origin political ideology observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "maoist"
+pattern = "Maoist"
+category = "government_party"
+rationale = "Specific China-origin political adjective observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "nanjinghua"
+pattern = "Nanjinghua"
+category = "people_culture_language"
+rationale = "Specific Chinese language-variety transliteration observed in a confirmed v1 miss."
+
+[[terms]]
+id = "pinyin"
+pattern = "pinyin"
+category = "people_culture_language"
+rationale = "Chinese romanisation system supported by two confirmed v1 challenger misses."
+
+[[terms]]
+id = "putonghua"
+pattern = "Putonghua"
+category = "people_culture_language"
+rationale = "Standard Mandarin transliteration observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "qingdao"
+pattern = "Qingdao"
+category = "place_region"
+rationale = "Major Chinese city observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "shanghainese"
+pattern = "Shanghainese"
+category = "people_culture_language"
+rationale = "Chinese regional language and demonym observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "shanxi"
+pattern = "Shanxi"
+category = "place_region"
+rationale = "Chinese province observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "shenzhen"
+pattern = "Shenzhen"
+category = "place_region"
+rationale = "Major Chinese city supported by three confirmed v1 challenger misses."
+
+[[terms]]
+id = "sino"
+pattern = "Sino"
+category = "country_general"
+rationale = "Common bounded China-related combining form; Stage B resolves ambiguous uses."
+
+[[terms]]
+id = "taizhou"
+pattern = "Taizhou"
+category = "place_region"
+rationale = "Chinese city observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "taipei_hanzi"
+pattern = "台北"
+category = "place_region"
+rationale = "Chinese-script Taipei reference observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "taiwan_hanzi_simplified"
+pattern = "台湾"
+category = "place_region"
+rationale = "Simplified-Chinese Taiwan reference observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "taiwan_hanzi_traditional"
+pattern = "台灣"
+category = "place_region"
+rationale = "Traditional-Chinese Taiwan reference observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "tencent"
+pattern = "Tencent"
+category = "company_technology"
+rationale = "High-signal Chinese company alias added in the systematic v2 company expansion."
+
+[[terms]]
+id = "tiktok"
+pattern = "TikTok"
+category = "company_technology"
+rationale = "High-signal Chinese technology actor added in the systematic v2 company expansion."
+
+[[terms]]
+id = "wang_yi"
+pattern = "Wang Yi"
+category = "government_person"
+rationale = "Full Chinese government-person name observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "wechat"
+pattern = "WeChat"
+category = "company_technology"
+rationale = "High-signal Chinese service observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "wuhan"
+pattern = "Wuhan"
+category = "place_region"
+rationale = "Major Chinese city added in the systematic v2 place expansion."
+
+[[terms]]
+id = "wuhan_university"
+pattern = "Wuhan University"
+category = "place_actor"
+rationale = "Specific Chinese university observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "wuxi"
+pattern = "Wuxi"
+category = "place_region"
+rationale = "Chinese city observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "xiaomi"
+pattern = "Xiaomi"
+category = "company_technology"
+rationale = "High-signal Chinese company observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "yanchenghua"
+pattern = "Yanchenghua"
+category = "people_culture_language"
+rationale = "Specific Chinese language-variety transliteration observed in a confirmed v1 miss."
+
+[[terms]]
+id = "yuan_note"
+pattern = "Yuan note"
+category = "country_general"
+rationale = "Narrow Chinese-currency phrase observed in a confirmed v1 miss; bare Yuan stays excluded."
+
+[[terms]]
+id = "zhejiang_university"
+pattern = "Zhejiang University"
+category = "place_actor"
+rationale = "Specific Chinese university observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "zhongguo_hanzi"
+pattern = "中国"
+category = "country_general"
+rationale = "Chinese-script country name supported by three confirmed v1 challenger misses."
+
+[[terms]]
+id = "zhongguoren_hanzi"
+pattern = "中国人"
+category = "people_culture_language"
+rationale = "Chinese-script people reference observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "zhongwen_hanzi"
+pattern = "中文"
+category = "people_culture_language"
+rationale = "Chinese-script language reference supported by two confirmed v1 challenger misses."
+
+[[terms]]
+id = "zhuyin"
+pattern = "zhuyin"
+category = "people_culture_language"
+rationale = "Chinese phonetic system observed in a confirmed v1 challenger miss."
+
+[[terms]]
+id = "journey_to_the_west"
+pattern = "Journey to the West"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "monkey_king"
+pattern = "Monkey King"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "wu_kong"
+pattern = "Wu Kong"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "havoc_in_heaven"
+pattern = "Havoc in Heaven"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "ne_zha"
+pattern = "Ne Zha"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "creation_of_the_gods"
+pattern = "Creation of the Gods"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "enter_the_dragon"
+pattern = "Enter the Dragon"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "long_zheng_hu_dou_simplified"
+pattern = "龙争虎斗"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "long_zheng_hu_dou_traditional"
+pattern = "龍爭虎鬥"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "shang_chi"
+pattern = "Shang Chi"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "shang_chi_hyphenated"
+pattern = "Shang-Chi"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "fuzhounese"
+pattern = "Fuzhounese"
+category = "people_culture_language"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "longjia"
+pattern = "Longjia"
+category = "people_culture_language"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "sinitic"
+pattern = "Sinitic"
+category = "people_culture_language"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "deng_ziqi"
+pattern = "邓紫棋"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "wang_caihua"
+pattern = "王彩樺"
+category = "culture_media"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "xiaohongshu"
+pattern = "Xiaohongshu"
+category = "company_technology"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "zhou_dynasty"
+pattern = "Zhou Dynasty"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "upper_xiajiadian_culture"
+pattern = "Upper Xiajiadian Culture"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "xiajiadian"
+pattern = "Xiajiadian"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "west_liao_river"
+pattern = "West Liao River"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "hangzhou"
+pattern = "Hangzhou"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "gubeikou"
+pattern = "Gubeikou"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "simatai"
+pattern = "Simatai"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "great_wall"
+pattern = "Great Wall"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "huanggutun_incident"
+pattern = "Huanggutun Incident"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "huanggutun"
+pattern = "Huanggutun"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "zhang_zuolin"
+pattern = "Zhang Zuolin"
+category = "government_person"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "nanjing_massacre"
+pattern = "Nanjing Massacre"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "tiananmen_square_massacre"
+pattern = "Tiananmen Square Massacre"
+category = "history_event"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "tiananmen_square"
+pattern = "Tiananmen Square"
+category = "place_region"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "peoples_armed_police"
+pattern = "People's Armed Police"
+category = "government_organisation"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "peoples_armed_police_curly"
+pattern = "People’s Armed Police"
+category = "government_organisation"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "belt_and_road_initiative"
+pattern = "Belt and Road Initiative"
+category = "government_organisation"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[terms]]
+id = "belt_and_road"
+pattern = "Belt and Road"
+category = "government_organisation"
+rationale = "Bounded development addition from exploratory v2 challenger mechanisms; not independent validation."
+
+[[ambiguity_rules]]
+id = "china_ceramic_material"
+term_ids = ["china"]
+phrases = ["bone china", "fine china", "china cabinet", "china cabinets", "china plate", "china plates", "china dish", "china dishes"]
+rationale = "Suppress only the overlapping China match in conventional ceramic/tableware senses."
+
+[[record_exclusion_rules]]
+id = "reddit_removed_sentinels"
+values = ["[deleted]", "[removed]"]
+rationale = "Exact Reddit removal sentinels contain no retrievable target text."
