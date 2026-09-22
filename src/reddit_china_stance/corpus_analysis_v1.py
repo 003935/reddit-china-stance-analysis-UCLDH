@@ -20,7 +20,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ANALYSIS_VERSION = "1.0.0"
+ANALYSIS_VERSION = "1.1.0"
+DECOMPOSITION_START_YEAR = 2020
+DECOMPOSITION_END_YEAR = 2025
 DEFAULT_INPUT = Path(
     "data/private-hf-modernbert-probability-random-corpus-source-v2/data/*.parquet"
 )
@@ -379,7 +381,10 @@ def _cell_key(row: Mapping[str, Any]) -> tuple[str, str, str]:
 
 
 def standardise_cells(
-    cell_year: Sequence[Mapping[str, Any]], *, start_year: int = 2022, end_year: int = 2025
+    cell_year: Sequence[Mapping[str, Any]],
+    *,
+    start_year: int = DECOMPOSITION_START_YEAR,
+    end_year: int = DECOMPOSITION_END_YEAR,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], list[dict[str, Any]]]:
     by_year: dict[int, dict[tuple[str, str, str], Mapping[str, Any]]] = defaultdict(dict)
     pooled_num: dict[tuple[str, str, str], float] = defaultdict(float)
@@ -831,7 +836,9 @@ def plot_composition(
             va="center",
         )
     right.set_xlim(0, max(values) * 1.5)
-    right.set_xlabel("Contribution to 2022-2025 change")
+    right.set_xlabel(
+        f"Contribution to {decomposition['start_year']}-{decomposition['end_year']} change"
+    )
     _clean_axis(right, grid="x")
     figure.suptitle(
         "Both composition and within-group movement explain the change",
@@ -1192,7 +1199,9 @@ def plot_decomposition_drivers(
         axis.axvline(0, color=COLOURS["ink"], linewidth=0.9)
         axis.set_yticks(positions, labels)
         axis.set_title(title, loc="left", fontsize=11)
-        axis.set_xlabel("Contribution to 2022-2025 change")
+        axis.set_xlabel(
+            f"Contribution to {DECOMPOSITION_START_YEAR}-{DECOMPOSITION_END_YEAR} change"
+        )
         _clean_axis(axis, grid="x")
     top.legend(ncol=2, loc="lower right")
     figure.suptitle(
@@ -1369,9 +1378,10 @@ negative mass by {float(end["negative_share"]) - float(start["negative_share"]):
 non-directional mass by {float(end["neutral_share"]) - float(start["neutral_share"]):+.3f}.
 
 The headline average is substantively incomplete. A symmetric decomposition attributes
-{float(decomposition["composition_share"]):.0%} of the 2022-2025 movement to the changing mix of
-subreddits, content types and targets, and {float(decomposition["within_share"]):.0%} to movement
-within comparable cells.
+{float(decomposition["composition_share"]):.0%} of the
+{int(decomposition["start_year"])}-{int(decomposition["end_year"])} movement to the changing mix
+of subreddits, content types and targets, and
+{float(decomposition["within_share"]):.0%} to movement within comparable cells.
 
 ![Monthly overview](figures/fig01_monthly_overview.png)
 
@@ -1598,6 +1608,9 @@ def run_analysis(
     equal_community = equal_community_by_year(subreddit_year)
     standardised, decomposition, contributions = standardise_cells(cell_year)
     monthly_trend = linear_trend(monthly)
+    decomposition_filename = (
+        f"decomposition_cells_{DECOMPOSITION_START_YEAR}_{DECOMPOSITION_END_YEAR}.csv"
+    )
 
     tables: dict[str, Sequence[Mapping[str, Any]]] = {
         "monthly_stance.csv": monthly,
@@ -1612,7 +1625,7 @@ def run_analysis(
         "hard_label_annual.csv": hard_annual,
         "equal_community_annual.csv": equal_community,
         "standardised_annual.csv": standardised,
-        "decomposition_cells_2022_2025.csv": contributions,
+        decomposition_filename: contributions,
         "measurement_diagnostics.csv": diagnostics,
         "candidate_volume.csv": candidate_year,
         "canonical_source_volume.csv": source_detail,
@@ -1639,8 +1652,11 @@ def run_analysis(
     summary = {
         "scope_rows": int(validation["base_rows"]),
         "monthly_trend": monthly_trend,
+        "annual_score_2020": float(annual_lookup[2020]["score"]),
         "annual_score_2022": float(annual_lookup[2022]["score"]),
         "annual_score_2025": float(annual_lookup[2025]["score"]),
+        "change_2020_2025": float(annual_lookup[2025]["score"])
+        - float(annual_lookup[2020]["score"]),
         "change_2022_2025": float(annual_lookup[2025]["score"])
         - float(annual_lookup[2022]["score"]),
         "decomposition": decomposition,

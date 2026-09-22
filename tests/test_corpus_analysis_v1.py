@@ -23,8 +23,8 @@ def _cell(year: int, subreddit: str, weight: float, score: float) -> dict[str, o
 
 def test_standardisation_and_symmetric_decomposition_close_exactly() -> None:
     rows = [
-        _cell(2022, "A", 0.75, -0.4),
-        _cell(2022, "B", 0.25, 0.0),
+        _cell(2020, "A", 0.75, -0.4),
+        _cell(2020, "B", 0.25, 0.0),
         _cell(2025, "A", 0.25, -0.2),
         _cell(2025, "B", 0.75, 0.2),
     ]
@@ -37,6 +37,8 @@ def test_standardisation_and_symmetric_decomposition_close_exactly() -> None:
     assert decomposition["composition_change"] == pytest.approx(0.2)
     assert decomposition["within_share"] == pytest.approx(0.5)
     assert decomposition["composition_share"] == pytest.approx(0.5)
+    assert decomposition["start_year"] == 2020
+    assert decomposition["end_year"] == 2025
     assert sum(float(row["total_contribution"]) for row in contributions) == pytest.approx(
         decomposition["total_change"]
     )

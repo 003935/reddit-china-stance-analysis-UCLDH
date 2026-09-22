@@ -33,7 +33,8 @@ membership, relevance probabilities/labels, and presence/stance probabilities/la
 the five analytical targets. The mapping must preserve the study's one-record-per-thread scope.
 
 The original analysis expects all 72 months of 2020–2025 and the ten study communities.
-It is not a generic analyser for arbitrary corpora. The decomposition compares 2022 with 2025.
+It is not a generic analyser for arbitrary corpora. The decomposition compares 2020 with 2025;
+the separate 2022–2025 summaries describe recovery from the observed trough.
 Use a fresh output directory per run; plot titles and axis limits are study-specific.
 
 ## Earlier stages

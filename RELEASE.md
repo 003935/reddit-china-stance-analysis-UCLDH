@@ -21,6 +21,16 @@ The README distinguishes those modules from the retained model.
 
 No licence has been assigned by this packaging step.
 
+## Post-release correction — 22 September 2026
+
+- Changed the symmetric decomposition comparison from 2022–2025 to the dissertation's full
+  2020–2025 study window.
+- Renamed its generated cell-contribution table to `decomposition_cells_2020_2025.csv` and added
+  2020 endpoint fields to the generated summary while retaining the separate 2022 trough fields.
+- Updated decomposition figure labels, documentation and the unit test for the corrected period.
+- Incremented the analysis version from 1.0.0 to 1.1.0. Existing generated outputs and receipts
+  remain historical artefacts of version 1.0.0 and must be regenerated for the corrected values.
+
 ## Verification
 
 - All 196 selected original files are present; only the two files listed above differ.
